@@ -93,6 +93,23 @@ public class Fraction {
 		int bNumerator = (lcm / other.getDenominator()) * other.getNumerator();
 		Fraction result = new Fraction((aNumerator - bNumerator), lcm);
 		return result;
-	}		
+	}	
+
+	public Fraction absValue() {
+		Fraction result = new Fraction(this.getNumerator(), this.getDenominator());
+		int num =  this.getNumerator();
+		if (num >= 0 ) {
+			return result;
+		} else {
+			int count = 0;
+			for(count = 0; num != 0; count++) {
+				num++;
+			}
+			result.setNumerator(count);
+			return result;
+		}
+	}
+
+				
 		
 }
