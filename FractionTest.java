@@ -34,6 +34,10 @@ public class FractionTest {
 	Fraction p = new Fraction(1, 15);
 	if (!p.equals(r.absValue())) System.out.println("Absolute Value failed");
 	
+	// Tests divide function
+	Fraction v = new Fraction(5, 6);
+	if (!v.equals(g.divide(h))) System.out.println("Divide Value failed");
+
     }
 
     static void test(Fraction f1, Fraction f2, String msg){
