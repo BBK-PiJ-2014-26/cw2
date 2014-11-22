@@ -116,8 +116,6 @@ public class Fraction {
 			denom = count;
 		}
 		Fraction result = new Fraction(num, denom);
-		String s = result.toString();
-		System.out.println(s);
 		return result;
 	}
 
