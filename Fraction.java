@@ -77,7 +77,7 @@ public class Fraction {
         return a;
     }
 
-	// Calculate the lowest common multiple (LCM) of two integers
+	// Calculates the lowest common multiple (LCM) of two integers
 	public int myLcm(int a, int b) {
 		int lcm = (a * b) / myGcd(a, b);
 		return lcm;
@@ -98,6 +98,13 @@ public class Fraction {
 		Fraction result = new Fraction((aNumerator - bNumerator), lcm);
 		return result;
 	}	
+
+	public Fraction divide(Fraction other) {
+		int num = this.getNumerator() * other.getDenominator();
+		int denom = this.getDenominator() * other.getNumerator();
+		Fraction result = new Fraction(num, denom);
+		return result;
+	}
 
 	public Fraction absValue() {
 		int num =  this.getNumerator();
