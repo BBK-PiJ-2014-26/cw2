@@ -100,29 +100,25 @@ public class Fraction {
 	}	
 
 	public Fraction absValue() {
-		Fraction result = new Fraction(this.getNumerator(), this.getDenominator());
-		int num =  result.getNumerator();
-		int denom = result.getDenominator();
-		if (num >= 0 && denom > 0) {
-			return result;
-		} else {
-			int count = 0;
-			if (num < 0) {
-				count = 0;
-				for(count = 0; num != 0; count++) {
-					num++;
-				}
-				result.setNumerator(count);
+		int num =  this.getNumerator();
+		int denom = this.getDenominator();
+		int count = 0;
+		if (num < 0) {
+			for(count = 0; num != 0; count++) {
+				num++;
 			}
-			if (denom < 0) {
-				count = 0;
-				for(count = 0; num != 0; count++) {
-					num++;
-				}
-				result.setDenominator(count);
-			}
-			return result;
+			num = count;
 		}
+		if (denom < 0) {
+			for(count = 0; denom != 0; count++) {
+				denom++;
+			}
+			denom = count;
+		}
+		Fraction result = new Fraction(num, denom);
+		String s = result.toString();
+		System.out.println(s);
+		return result;
 	}
 
 				
