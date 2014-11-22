@@ -38,6 +38,10 @@ public class FractionTest {
 	Fraction v = new Fraction(5, 6);
 	if (!v.equals(g.divide(h))) System.out.println("Divide Value failed");
 
+	// Tests negate function
+	Fraction c = new Fraction(5, -6);
+	if (!c.equals(v.negate())) System.out.println("Negate Value failed");
+
     }
 
     static void test(Fraction f1, Fraction f2, String msg){
