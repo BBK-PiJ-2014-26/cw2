@@ -130,6 +130,17 @@ public class Fraction {
 		return result;
 	}
 
-				
-		
+	public Fraction negate() {
+		int num =  this.getNumerator();
+		int denom = this.getDenominator();				
+		if (num < 0 || denom < 0) {
+			Fraction result = new Fraction(num, denom);
+			return result;
+		} else {
+			num = num - (num * 2);
+			Fraction result = new Fraction(num, denom);
+			return result;
+		}
+	}
+			
 }
