@@ -15,6 +15,11 @@ public class Fraction {
         setNumerator(num / gcd);
         setDenominator(denom / gcd);
     }
+	// this alternative constructor uses an existing fraction instead of two integers
+	public Fraction(Fraction other) {
+		this.numerator = other.getNumerator();
+		this.denominator = other.getDenominator();
+    	}
 
     @Override
     public String toString() {
@@ -58,7 +63,6 @@ public class Fraction {
     }
 
     public Fraction multiply(Fraction other) {
-
         int num = this.getNumerator() * other.getNumerator();
         int denom = this.getDenominator() * other.getDenominator();
         return new Fraction(num, denom);
@@ -97,15 +101,26 @@ public class Fraction {
 
 	public Fraction absValue() {
 		Fraction result = new Fraction(this.getNumerator(), this.getDenominator());
-		int num =  this.getNumerator();
-		if (num >= 0 ) {
+		int num =  result.getNumerator();
+		int denom = result.getDenominator();
+		if (num >= 0 && denom > 0) {
 			return result;
 		} else {
 			int count = 0;
-			for(count = 0; num != 0; count++) {
-				num++;
+			if (num < 0) {
+				count = 0;
+				for(count = 0; num != 0; count++) {
+					num++;
+				}
+				result.setNumerator(count);
 			}
-			result.setNumerator(count);
+			if (denom < 0) {
+				count = 0;
+				for(count = 0; num != 0; count++) {
+					num++;
+				}
+				result.setDenominator(count);
+			}
 			return result;
 		}
 	}
