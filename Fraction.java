@@ -87,4 +87,12 @@ public class Fraction {
 		return result;
 	}
 		
+	public Fraction subtract(Fraction other) {
+		int lcm = myLcm(this.getDenominator(), other.getDenominator());
+		int aNumerator = (lcm / this.getDenominator()) * this.getNumerator();
+		int bNumerator = (lcm / other.getDenominator()) * other.getNumerator();
+		Fraction result = new Fraction((aNumerator - bNumerator), lcm);
+		return result;
+	}		
+		
 }
