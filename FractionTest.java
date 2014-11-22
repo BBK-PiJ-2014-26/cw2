@@ -29,6 +29,10 @@ public class FractionTest {
 	// Tests subtract function
 	Fraction r = new Fraction(-1, 15);
 	if (!r.equals(w.subtract(e))) System.out.println("Subtract failed");
+
+	// Tests absValue function
+	Fraction p = new Fraction(1, 15);
+	if (!p.equals(r.absValue())) System.out.println("Absolute Value failed");
 	
     }
 
