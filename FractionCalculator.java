@@ -1,14 +1,17 @@
 import java.util.Scanner;
 
 public class FractionCalculator {
-
-	private Fraction f1;
-	private Fraction f2;
-	private String operator;
-	public static int start = 0;
+	
+	private boolean add;
+	private boolean subtract;
+	private boolean divide;
+	private boolean multiply;
+	public static int launch = 0;
 
 	public void launch() {
-		System.out.println(start);
+		System.out.println(launch);
 	}
+
+	
 }
 
