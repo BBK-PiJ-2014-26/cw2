@@ -8,7 +8,8 @@ public class FractionCalculator {
 	private boolean add;
 	private boolean subtract;
 	private boolean divide;
-	private boolean multiply;	
+	private boolean multiply;
+	private	Scanner input;
 
 	public void launch() {
 		System.out.println("0");
@@ -19,7 +20,7 @@ public class FractionCalculator {
 		this.multiply = false;
 		this.f1 = null;
 		this.f2 = null;
-		Scanner input = new Scanner(System.in);
+		this.input = new Scanner(System.in);
 		do {
 			String s = input.next();
 			if (f1 == null) {
@@ -92,21 +93,19 @@ public class FractionCalculator {
 				this.multiply = true;
 				this.operatorPresent = true;
 			} else {
-				this.specialOperator(s);
+				this.error();
 			}
-		} else {
-			this.error();
-		}
-	}
-
-	public void specialOperator(String s) {
-		if (s.equals("a") || s.equals("A") || s.equals("abs")) {
+		} else if (s.equals("a") || s.equals("A") || s.equals("abs")) {
 			this.f1 = this.f1.absValue();
 		} else if (s.equals("n") || s.equals("N") || s.equals("neg")) { 
 			this.f1 = this.f1.negate();
 		} else if (s.equals("c") || s.equals("C") || s.equals("clear")) {
 			this.f1 = null;
 			System.out.println("0");
+		} else if (s.equals("q") || s.equals("Q") || s.equals("quit")) {
+			this.input = null;
+		} else {
+			this.error();
 		}
 	}
 
