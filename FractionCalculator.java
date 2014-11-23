@@ -29,13 +29,15 @@ public class FractionCalculator {
 				this.setOperator(s);
 			} else {
 				this.setF2(s);
-			}	
+			}
+
 		} while (input.hasNext());
 	}
 
 	public void error() {
+		System.out.println("0");
 		System.out.println("Invalid input, please try again.");
-		this.launch();
+		this.input = new Scanner(" ");
 	}
 
 	public void setF1(String s) {		
@@ -56,11 +58,13 @@ public class FractionCalculator {
 			temp = s.substring((slashPos + 1), (sLength - 1)); 
 			int denom = Integer.parseInt(temp);
 			this.f1 = new Fraction(num, denom);
+			System.out.println(this.f1.toString());	
 		} else {
 			String temp = s.substring(0, (sLength - 1));
 			int num = Integer.parseInt(temp);
 			int denom = 1;
 			this.f1 = new Fraction(num, denom);
+			System.out.println(this.f1.toString());	
 		}
 
 	}
@@ -97,13 +101,15 @@ public class FractionCalculator {
 			}
 		} else if (s.equals("a") || s.equals("A") || s.equals("abs")) {
 			this.f1 = this.f1.absValue();
+			System.out.println(this.f1.toString());	
 		} else if (s.equals("n") || s.equals("N") || s.equals("neg")) { 
 			this.f1 = this.f1.negate();
+			System.out.println(this.f1.toString());	
 		} else if (s.equals("c") || s.equals("C") || s.equals("clear")) {
 			this.f1 = null;
 			System.out.println("0");
 		} else if (s.equals("q") || s.equals("Q") || s.equals("quit")) {
-			this.input = null;
+			this.input = new Scanner(" ");
 		} else {
 			this.error();
 		}
@@ -142,6 +148,7 @@ public class FractionCalculator {
 			this.subtract = false;
 			this.divide = false;
 			this.multiply = false;
+			System.out.println(this.f1.toString());	
 		} else if (subtract) {
 			this.f1 = this.f1.subtract(this.f2);
 			this.f2 = null;
@@ -150,6 +157,7 @@ public class FractionCalculator {
 			this.subtract = false;
 			this.divide = false;
 			this.multiply = false;	
+			System.out.println(this.f1.toString());	
 		} else if (divide) {
 			this.f1 = this.f1.divide(this.f2);
 			this.f2 = null;
@@ -158,6 +166,7 @@ public class FractionCalculator {
 			this.subtract = false;
 			this.divide = false;
 			this.multiply = false;
+			System.out.println(this.f1.toString());	
 		} else if (multiply) {
 			this.f1 = this.f1.multiply(this.f2);
 			this.f2 = null;
@@ -166,6 +175,7 @@ public class FractionCalculator {
 			this.subtract = false;
 			this.divide = false;
 			this.multiply = false;
+			System.out.println(this.f1.toString());	
 		} else {
 			this.error();
 		}
