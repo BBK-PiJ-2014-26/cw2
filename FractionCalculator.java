@@ -43,7 +43,6 @@ public class FractionCalculator {
 	}
 
 	public void error() {
-		System.out.println("Invalid input, please try again.");
 		this.error = true;
 	}
 
@@ -190,7 +189,7 @@ public class FractionCalculator {
 
 	public static void main(String[] args)  {
 
-		System.out.println("\n" + "My name is Gareth Moore.\n" + "Welcome to my Fraction Calculator.\n" + "The calculator is intialised to 0.\n" + "To begin, please enter your problem on the next line:\n" + "+ 1/2... or * 1/4... etc.\n" + "Type q, Q or quit to leave the application.\n");
+		System.out.println("\n" + "My name is Gareth Moore.\n" + "Welcome to my Fraction Calculator.\n" + "The calculator is intialised to 0.\n" + "To begin, please enter your problem on the next line:\n" + "+ 1/2... or * 1/4... etc.\n" + "Type a, A or abs to calculate the absolute value.\n" + "Type n, N or neg to negate the value.\n" + "Type c, C or clear to clear the calculator.\n" + "Type q, Q or quit to leave the application.\n");
 		FractionCalculator myCalc = new FractionCalculator();
 		Fraction myFraction = new Fraction(0, 1);
 		Scanner sc = null;
