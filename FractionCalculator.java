@@ -11,10 +11,11 @@ public class FractionCalculator {
 	private boolean multiply;
 	private	Scanner input;
 	private boolean finished;
+	private boolean quit;
+	private boolean error;
 
 	public Fraction launch(Scanner input) {
 		this.input = input;
-		System.out.println("0");
 		this.operatorPresent = false;
 		this.add = false;
 		this.subtract = false;
@@ -23,6 +24,8 @@ public class FractionCalculator {
 		this.f1 = null;
 		this.f2 = null;
 		this.finished = false;
+		this.quit = false;
+		this.error = false;
 		while (input.hasNext()) {
 			String s = input.next();
 			if (!finished) {
@@ -41,7 +44,8 @@ public class FractionCalculator {
 	public void error() {
 		System.out.println("0");
 		System.out.println("Invalid input, please try again.");
-		this.input = new Scanner(" ");
+		this.finished = true;
+		this.error = true;
 	}
 
 	public void setF1(String s) {		
@@ -114,6 +118,7 @@ public class FractionCalculator {
 			System.out.println("0");
 		} else if (s.equals("q") || s.equals("Q") || s.equals("quit")) {
 			this.finished = true;
+			this.quit = true;
 		} else {
 			this.error();
 		}
@@ -152,7 +157,6 @@ public class FractionCalculator {
 			this.subtract = false;
 			this.divide = false;
 			this.multiply = false;
-			System.out.println(this.f1.toString());	
 		} else if (subtract) {
 			this.f1 = this.f1.subtract(this.f2);
 			this.f2 = null;
@@ -161,7 +165,6 @@ public class FractionCalculator {
 			this.subtract = false;
 			this.divide = false;
 			this.multiply = false;	
-			System.out.println(this.f1.toString());	
 		} else if (divide) {
 			this.f1 = this.f1.divide(this.f2);
 			this.f2 = null;
@@ -170,7 +173,6 @@ public class FractionCalculator {
 			this.subtract = false;
 			this.divide = false;
 			this.multiply = false;
-			System.out.println(this.f1.toString());	
 		} else if (multiply) {
 			this.f1 = this.f1.multiply(this.f2);
 			this.f2 = null;
@@ -179,7 +181,6 @@ public class FractionCalculator {
 			this.subtract = false;
 			this.divide = false;
 			this.multiply = false;
-			System.out.println(this.f1.toString());	
 		} else {
 			this.error();
 		}
@@ -191,6 +192,24 @@ public class FractionCalculator {
 		Fraction testFraction = new Fraction(1, 1);
 		testFraction = test.launch(input);
 		if (!fraction.equals(testFraction)) { System.out.println("Test failed"); }
+	}
+
+	public static void main(String[] args)  {
+
+		System.out.println("\n" + "My name is Gareth Moore.\n" + "Welcome to my Fraction Calculator.\n" + "The calculator is intialised to 0.\n" + "To begin, please enter your problem in the form:\n" + "0 + 1/2... or 0 * 1/4... etc.\n" + "Type q, Q or quit to leave the application.\n"); 
+		FractionCalculator myCalc = new FractionCalculator();
+		Fraction myFraction = new Fraction(1, 1);
+		System.out.print("0 ");
+		boolean finished = false;
+		do {
+			if (myCalc.quit || myCalc.error) {
+				finished = true;
+			} else {
+				System.out.print(myFraction.toString());
+				Scanner input = new Scanner(System.in);	
+				myFraction = myCalc.launch(input);
+			} 
+		} while (!finished);
 	}
 }
 
