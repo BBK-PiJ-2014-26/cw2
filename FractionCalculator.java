@@ -11,18 +11,8 @@ public class FractionCalculator {
 	private boolean multiply;
 	private	Scanner input;
 
-	public FractionCalculator(Scanner input) {
-		this.input = new Scanner(input);
-		this.operatorPresent = false;
-		this.add = false;
-		this.subtract = false;
-		this.divide = false;
-		this.multiply = false;
-		this.f1 = null;
-		this.f2 = null;
-	}
-
 	public Fraction launch(Scanner input) {
+		this.input = input;
 		System.out.println("0");
 		this.operatorPresent = false;
 		this.add = false;
@@ -66,12 +56,12 @@ public class FractionCalculator {
 		if (slashPresent) {
 			String temp = s.substring(0, slashPos);
 			int num = Integer.parseInt(temp);
-			temp = s.substring((slashPos + 1), (sLength - 1)); 
+			temp = s.substring((slashPos + 1), sLength); 
 			int denom = Integer.parseInt(temp);
 			this.f1 = new Fraction(num, denom);
 			System.out.println(this.f1.toString());	
 		} else {
-			String temp = s.substring(0, (sLength - 1));
+			String temp = s.substring(0, sLength);
 			int num = Integer.parseInt(temp);
 			int denom = 1;
 			this.f1 = new Fraction(num, denom);
@@ -141,12 +131,12 @@ public class FractionCalculator {
 		if (slashPresent) {
 			String temp = s.substring(0, slashPos);
 			int num = Integer.parseInt(temp);
-			temp = s.substring((slashPos + 1), (sLength - 1)); 
+			temp = s.substring((slashPos + 1), sLength); 
 			int denom = Integer.parseInt(temp);
 			this.f2 = new Fraction(num, denom);
 
 		} else {
-			String temp = s.substring(0, (sLength - 1));
+			String temp = s.substring(0, sLength);
 			int num = Integer.parseInt(temp);
 			int denom = 1;
 			this.f2 = new Fraction(num, denom);
@@ -192,7 +182,12 @@ public class FractionCalculator {
 		}
 	}
 
-	public void evaluate(Fraction fraction, String inputString) {		
-	
+	public void evaluate(Fraction fraction, String inputString) {	
+		Scanner input = new Scanner(inputString);
+		FractionCalculator test = new FractionCalculator();
+		Fraction testFraction = new Fraction(1, 1);
+		testFraction = test.launch(input);
+		if (!fraction.equals(testFraction)) { System.out.println("Test failed"); }
+	}
 }
 
