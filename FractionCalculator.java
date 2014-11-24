@@ -10,6 +10,7 @@ public class FractionCalculator {
 	private boolean divide;
 	private boolean multiply;
 	private	Scanner input;
+	private boolean finished;
 
 	public Fraction launch(Scanner input) {
 		this.input = input;
@@ -21,17 +22,19 @@ public class FractionCalculator {
 		this.multiply = false;
 		this.f1 = null;
 		this.f2 = null;
-		do {
+		this.finished = false;
+		while (input.hasNext()) {
 			String s = input.next();
-			if (f1 == null) {
-				this.setF1(s);
-			} else if (!operatorPresent) {
-				this.setOperator(s);
-			} else {
-				this.setF2(s);
+			if (!finished) {
+				if (f1 == null) {
+					this.setF1(s);
+				} else if (!operatorPresent) {
+					this.setOperator(s);
+				} else {
+					this.setF2(s);
+				}
 			}
-
-		} while (input.hasNext());
+		} 
 		return this.f1;
 	}
 
@@ -110,7 +113,7 @@ public class FractionCalculator {
 			this.f1 = null;
 			System.out.println("0");
 		} else if (s.equals("q") || s.equals("Q") || s.equals("quit")) {
-			this.input = new Scanner(" ");
+			this.finished = true;
 		} else {
 			this.error();
 		}
