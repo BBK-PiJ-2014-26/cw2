@@ -1,9 +1,9 @@
 import java.util.Scanner;
 
 public class FractionCalculator {
-	
+
 	private Fraction f1;
-	private Fraction f2; 
+	private Fraction f2;
 	private boolean operatorPresent;
 	private boolean add;
 	private boolean subtract;
@@ -13,6 +13,7 @@ public class FractionCalculator {
 	private boolean finished;
 	private boolean quit;
 	private boolean error;
+	private boolean clear;
 
 	public Fraction launch(Scanner input) {
 		this.input = input;
@@ -26,29 +27,27 @@ public class FractionCalculator {
 		this.finished = false;
 		this.quit = false;
 		this.error = false;
+		this.clear = false;
 		while (input.hasNext()) {
 			String s = input.next();
-			if (!finished) {
-				if (f1 == null) {
-					this.setF1(s);
-				} else if (!operatorPresent) {
-					this.setOperator(s);
-				} else {
-					this.setF2(s);
-				}
+			if (f1 == null) {
+				this.setF1(s);
+			} else if (!operatorPresent) {
+				this.setOperator(s);
+			} else {
+				this.setF2(s);
 			}
-		} 
+
+		}
 		return this.f1;
 	}
 
 	public void error() {
-		System.out.println("0");
 		System.out.println("Invalid input, please try again.");
-		this.finished = true;
 		this.error = true;
 	}
 
-	public void setF1(String s) {		
+	public void setF1(String s) {
 		int sLength = s.length();
 		int count = 0;
 		int slashPos = 0;
@@ -63,21 +62,19 @@ public class FractionCalculator {
 		if (slashPresent) {
 			String temp = s.substring(0, slashPos);
 			int num = Integer.parseInt(temp);
-			temp = s.substring((slashPos + 1), sLength); 
+			temp = s.substring((slashPos + 1), sLength);
 			int denom = Integer.parseInt(temp);
 			this.f1 = new Fraction(num, denom);
-			System.out.println(this.f1.toString());	
 		} else {
 			String temp = s.substring(0, sLength);
 			int num = Integer.parseInt(temp);
 			int denom = 1;
 			this.f1 = new Fraction(num, denom);
-			System.out.println(this.f1.toString());	
 		}
 
 	}
-		
-		
+
+
 	public void setOperator(String s) {
 		if (s.equals("+")) {
 			if (!add) {
@@ -109,22 +106,19 @@ public class FractionCalculator {
 			}
 		} else if (s.equals("a") || s.equals("A") || s.equals("abs")) {
 			this.f1 = this.f1.absValue();
-			System.out.println(this.f1.toString());	
-		} else if (s.equals("n") || s.equals("N") || s.equals("neg")) { 
+		} else if (s.equals("n") || s.equals("N") || s.equals("neg")) {
 			this.f1 = this.f1.negate();
-			System.out.println(this.f1.toString());	
 		} else if (s.equals("c") || s.equals("C") || s.equals("clear")) {
 			this.f1 = null;
-			System.out.println("0");
+			this.clear = true;
 		} else if (s.equals("q") || s.equals("Q") || s.equals("quit")) {
-			this.finished = true;
 			this.quit = true;
 		} else {
 			this.error();
 		}
 	}
 
-	public void setF2(String s) {		
+	public void setF2(String s) {
 		int sLength = s.length();
 		int count = 0;
 		int slashPos = 0;
@@ -139,7 +133,7 @@ public class FractionCalculator {
 		if (slashPresent) {
 			String temp = s.substring(0, slashPos);
 			int num = Integer.parseInt(temp);
-			temp = s.substring((slashPos + 1), sLength); 
+			temp = s.substring((slashPos + 1), sLength);
 			int denom = Integer.parseInt(temp);
 			this.f2 = new Fraction(num, denom);
 
@@ -164,7 +158,7 @@ public class FractionCalculator {
 			this.add = false;
 			this.subtract = false;
 			this.divide = false;
-			this.multiply = false;	
+			this.multiply = false;
 		} else if (divide) {
 			this.f1 = this.f1.divide(this.f2);
 			this.f2 = null;
@@ -186,7 +180,7 @@ public class FractionCalculator {
 		}
 	}
 
-	public void evaluate(Fraction fraction, String inputString) {	
+	public void evaluate(Fraction fraction, String inputString) {
 		Scanner input = new Scanner(inputString);
 		FractionCalculator test = new FractionCalculator();
 		Fraction testFraction = new Fraction(1, 1);
@@ -196,19 +190,28 @@ public class FractionCalculator {
 
 	public static void main(String[] args)  {
 
-		System.out.println("\n" + "My name is Gareth Moore.\n" + "Welcome to my Fraction Calculator.\n" + "The calculator is intialised to 0.\n" + "To begin, please enter your problem in the form:\n" + "0 + 1/2... or 0 * 1/4... etc.\n" + "Type q, Q or quit to leave the application.\n"); 
+		System.out.println("\n" + "My name is Gareth Moore.\n" + "Welcome to my Fraction Calculator.\n" + "The calculator is intialised to 0.\n" + "To begin, please enter your problem on the next line:\n" + "+ 1/2... or * 1/4... etc.\n" + "Type q, Q or quit to leave the application.\n");
 		FractionCalculator myCalc = new FractionCalculator();
-		Fraction myFraction = new Fraction(1, 1);
-		System.out.print("0 ");
+		Fraction myFraction = new Fraction(0, 1);
+		Scanner sc = null;
 		boolean finished = false;
 		do {
-			if (myCalc.quit || myCalc.error) {
+			String s1 = myFraction.toString() + " ";
+			System.out.println(s1);
+			sc = new Scanner(System.in);
+			String s2 = sc.nextLine();
+			String s3 = s1 + s2;
+			sc = new Scanner(s3);
+			myFraction = myCalc.launch(sc);
+			if (myCalc.quit) {
+				System.out.println("Goodbye.");
 				finished = true;
-			} else {
-				System.out.print(myFraction.toString());
-				Scanner input = new Scanner(System.in);	
-				myFraction = myCalc.launch(input);
-			} 
+			} else if (myCalc.error) {
+				System.out.println("Error.");
+				myFraction = new Fraction(0, 1);
+			} else if (myCalc.clear) {
+				myFraction = new Fraction(0, 1);
+			}
 		} while (!finished);
 	}
 }
