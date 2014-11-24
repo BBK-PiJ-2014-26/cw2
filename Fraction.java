@@ -130,11 +130,11 @@ public class Fraction {
 		int num =  this.getNumerator();
 		int denom = this.getDenominator();				
 		if (num < 0)  {
-			num = num + (num * 2); 
+			num = num + (num * -2); 
 			Fraction result = new Fraction(num, denom);
 			return result;
 		} else if (denom < 0) {
-			denom = denom + (denom * 2); 
+			denom = denom + (denom * -2); 
 			Fraction result = new Fraction(num, denom);
 			return result;
 		} else {
