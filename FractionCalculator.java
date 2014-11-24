@@ -11,7 +11,18 @@ public class FractionCalculator {
 	private boolean multiply;
 	private	Scanner input;
 
-	public void launch() {
+	public FractionCalculator(Scanner input) {
+		this.input = new Scanner(input);
+		this.operatorPresent = false;
+		this.add = false;
+		this.subtract = false;
+		this.divide = false;
+		this.multiply = false;
+		this.f1 = null;
+		this.f2 = null;
+	}
+
+	public Fraction launch(Scanner input) {
 		System.out.println("0");
 		this.operatorPresent = false;
 		this.add = false;
@@ -20,7 +31,6 @@ public class FractionCalculator {
 		this.multiply = false;
 		this.f1 = null;
 		this.f2 = null;
-		this.input = new Scanner(System.in);
 		do {
 			String s = input.next();
 			if (f1 == null) {
@@ -32,6 +42,7 @@ public class FractionCalculator {
 			}
 
 		} while (input.hasNext());
+		return this.f1;
 	}
 
 	public void error() {
@@ -179,7 +190,9 @@ public class FractionCalculator {
 		} else {
 			this.error();
 		}
-	}	
+	}
+
+	public void evaluate(Fraction fraction, String inputString) {		
 	
 }
 
