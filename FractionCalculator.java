@@ -10,7 +10,6 @@ public class FractionCalculator {
 	private boolean divide;
 	private boolean multiply;
 	private	Scanner input;
-	private boolean finished;
 	private boolean quit;
 	private boolean error;
 	private boolean clear;
@@ -24,7 +23,6 @@ public class FractionCalculator {
 		this.multiply = false;
 		this.f1 = null;
 		this.f2 = null;
-		this.finished = false;
 		this.quit = false;
 		this.error = false;
 		this.clear = false;
