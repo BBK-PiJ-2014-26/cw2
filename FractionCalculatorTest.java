@@ -17,7 +17,7 @@ public class FractionCalculatorTest {
 		s = "6/4 - 1/4";
 		test1.evaluate(f, s);
 
-		// Tests multiply
+		 //Tests multiply
 		s = "6/4 * 1/4";
 		f = new Fraction(6, 16);
 		test1.evaluate(f, s);
@@ -36,15 +36,21 @@ public class FractionCalculatorTest {
 		s = "-9/3 N";
 		test1.evaluate(f, s);
 
-		//Test clear
+		//Tests clear
 		s = "1/4 C 1/2";
 		f = new Fraction(1, 2);
 		test1.evaluate(f, s);
 
 		//Test quit
-		s = "1/4 q 3/4 + 1/3";
+		s = "1/4 Q 3";
 		f = new Fraction(1, 4);
 		test1.evaluate(f, s);
+
+		//Test complex string
+		s = "1/10 + 12/19 * 10/7";
+		f = new Fraction(139, 133);
+		test1.evaluate(f, s);
+		
 	} 
 
 }
